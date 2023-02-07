@@ -1,9 +1,9 @@
 {
-  "name": "apng-js",
-  "version": "1.1.2",
-  "description": "Parse and play animated PNG (APNG)",
-  "homepage": "https://github.com/davidmz/apng-js",
-  "repository": "davidmz/apng-js",
+  "name": "apng-js-no-blob",
+  "version": "2.0.0",
+  "description": "Parse animated PNG (APNG) without Blob but Uint8Array",
+  "homepage": "https://github.com/flyskywhy/apng-js-no-blob",
+  "repository": "flyskywhy/apng-js-no-blob",
   "main": "lib/index.js",
   "types": "types/library/parser.d.ts",
   "scripts": {
@@ -15,7 +15,23 @@
     "email": "david@hiero.ru",
     "url": "https://github.com/davidmz"
   },
+  "contributors": [
+    {
+      "name": "Li Zheng",
+      "email": "flyskywhy@gmail.com",
+      "url": "https://github.com/flyskywhy"
+    }
+  ],
   "license": "MIT",
+  "keywords": [
+    "animated",
+    "apng",
+    "no-blob",
+    "parse",
+    "parser",
+    "png",
+    "react-native"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "~2.27.0",
     "@typescript-eslint/parser": "~2.27.0",

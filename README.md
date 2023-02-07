@@ -1,4 +1,10 @@
 # apng-js-no-blob
+
+[![npm version](http://img.shields.io/npm/v/apng-js-no-blob.svg?style=flat-square)](https://npmjs.org/package/apng-js-no-blob "View this project on npm")
+[![npm downloads](http://img.shields.io/npm/dm/apng-js-no-blob.svg?style=flat-square)](https://npmjs.org/package/apng-js-no-blob "View this project on npm")
+[![npm licence](http://img.shields.io/npm/l/apng-js-no-blob.svg?style=flat-square)](https://npmjs.org/package/apng-js-no-blob "View this project on npm")
+[![Platform](https://img.shields.io/badge/platform-ios%20%7C%20android%20%7C%20web-989898.svg?style=flat-square)](https://npmjs.org/package/apng-js-no-blob "View this project on npm")
+
 Change `frame.imageData` type from `Blob` (in `apng-js`) to `Uint8Array` (in `apng-js-no-blob`), so that e.g. [react-native-pixel-png](https://github.com/flyskywhy/react-native-pixel-png) can work.
 
 ---
