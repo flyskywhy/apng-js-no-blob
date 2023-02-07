@@ -307,8 +307,8 @@
 	        return errNotAPNG;
 	    }
 
-	    var preBlob = new Blob(preDataParts),
-	        postBlob = new Blob(postDataParts);
+	    var preData = mergeUint8Arrays(preDataParts),
+	        postData = mergeUint8Arrays(postDataParts);
 
 	    apng.frames.forEach(function (frame) {
 	        var bb = [];
@@ -316,17 +316,35 @@
 	        headerDataBytes.set(makeDWordArray(frame.width), 0);
 	        headerDataBytes.set(makeDWordArray(frame.height), 4);
 	        bb.push(makeChunkBytes('IHDR', headerDataBytes));
-	        bb.push(preBlob);
+	        bb.push(preData);
 	        frame.dataParts.forEach(function (p) {
 	            return bb.push(makeChunkBytes('IDAT', p));
 	        });
-	        bb.push(postBlob);
-	        frame.imageData = new Blob(bb, { 'type': 'image/png' });
+	        bb.push(postData);
+	        frame.imageData = mergeUint8Arrays(bb);
 	        delete frame.dataParts;
 	        bb = null;
 	    });
 
 	    return apng;
+	}
+
+	function mergeUint8Arrays(arrays) {
+	    // Get the total length of all arrays.
+	    var length = 0;
+	    arrays.forEach(function (item) {
+	        length += item.length;
+	    });
+
+	    // Create a new array with total length and merge all source arrays.
+	    var mergedUint8Array = new Uint8Array(length);
+	    var offset = 0;
+	    arrays.forEach(function (item) {
+	        mergedUint8Array.set(item, offset);
+	        offset += item.length;
+	    });
+
+	    return mergedUint8Array;
 	}
 
 	/**
@@ -558,7 +576,7 @@
 
 	    /** @type {number} */
 
-	    /** @type {Blob} */
+	    /** @type {Uint8Array} */
 
 	    /** @type {HTMLImageElement} */
 

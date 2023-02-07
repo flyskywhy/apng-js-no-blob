@@ -52,7 +52,7 @@ export class Frame {
     disposeOp = 0;
     /** @type {number} */
     blendOp = 0;
-    /** @type {Blob} */
+    /** @type {Uint8Array} */
     imageData = null;
     /** @type {HTMLImageElement} */
     imageElement = null;

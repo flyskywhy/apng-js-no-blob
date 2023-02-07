@@ -1,3 +1,15 @@
+# apng-js-no-blob
+Change `frame.imageData` type from `Blob` (in `apng-js`) to `Uint8Array` (in `apng-js-no-blob`), so that e.g. [react-native-pixel-png](https://github.com/flyskywhy/react-native-pixel-png) can work.
+
+---
+
+---
+
+Forked from [apng-js](https://github.com/davidmz/apng-js), below is its README.
+
+---
+
+---
 # apng-js
 
 `apng-js` provides functions for parse and render animated PNG's 

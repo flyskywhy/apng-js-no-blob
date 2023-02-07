@@ -63,7 +63,7 @@ export declare class Frame {
     /**
      * image data in PNG (not animated) format
      */
-    imageData: Blob | null;
+    imageData: Uint8Array | null;
     /**
      * image data rendered as HTML Image element.
      *

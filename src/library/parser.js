@@ -105,8 +105,8 @@ export default function parseAPNG(buffer) {
         return errNotAPNG;
     }
 
-    const preBlob = new Blob(preDataParts),
-        postBlob = new Blob(postDataParts);
+    const preData = mergeUint8Arrays(preDataParts),
+        postData = mergeUint8Arrays(postDataParts);
 
     apng.frames.forEach(frame => {
         var bb = [];
@@ -114,15 +114,33 @@ export default function parseAPNG(buffer) {
         headerDataBytes.set(makeDWordArray(frame.width), 0);
         headerDataBytes.set(makeDWordArray(frame.height), 4);
         bb.push(makeChunkBytes('IHDR', headerDataBytes));
-        bb.push(preBlob);
+        bb.push(preData);
         frame.dataParts.forEach(p => bb.push(makeChunkBytes('IDAT', p)));
-        bb.push(postBlob);
-        frame.imageData = new Blob(bb, {'type': 'image/png'});
+        bb.push(postData);
+        frame.imageData = mergeUint8Arrays(bb);
         delete frame.dataParts;
         bb = null;
     });
 
     return apng;
+}
+
+function mergeUint8Arrays(arrays) {
+    // Get the total length of all arrays.
+    let length = 0;
+    arrays.forEach(item => {
+        length += item.length;
+    });
+
+    // Create a new array with total length and merge all source arrays.
+    let mergedUint8Array = new Uint8Array(length);
+    let offset = 0;
+    arrays.forEach(item => {
+        mergedUint8Array.set(item, offset);
+        offset += item.length;
+    });
+
+    return mergedUint8Array;
 }
 
 /**
